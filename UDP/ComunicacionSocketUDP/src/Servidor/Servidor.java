@@ -30,6 +30,7 @@ public class Servidor
 		//Establecemos el timeout del socket
 		welcomeSocket.setSoTimeout(30000);
 
+		
 
 		//Rutas de los archivos a descargar
 		while(true) 
