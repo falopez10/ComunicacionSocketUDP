@@ -25,6 +25,7 @@ public class Cliente extends JFrame implements ActionListener
 	 private static final String AGREGAR_PUERTO = "Agregar Puerto";
 	 //private static final String SOLICITAR = "Solicitar";
 
+	 
 	private JButton btnIniciarComunicacin;
 	private JButton btnEnviar;
 	private JTextField textFieldIP;
