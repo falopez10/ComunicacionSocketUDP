@@ -1,6 +1,8 @@
 package Cliente;
 
-public class ObjetoEnvio 
+import java.io.Serializable;
+
+public class ObjetoEnvio implements Serializable
 {
 	private int numeroSecuencia;
 	
@@ -12,5 +14,9 @@ public class ObjetoEnvio
 		this.marcaTiempo = marcaTiempo;
 	}
 	
+	public String toString()
+	{
+		return numeroSecuencia +":"+marcaTiempo;
+	}
 	
 }
