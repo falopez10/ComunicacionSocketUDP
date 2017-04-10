@@ -13,17 +13,17 @@ public class ClienteUDP {
 	
 	private DatagramSocket clientSocket;
 	private InetAddress IPAddress;
-	private int numero = 0;
+	private int numero ;
 	
 	
 	public int getNum() {
 		return numero;
 	}
 	
-	public ClienteUDP(String num, int puerto) {
+	public ClienteUDP(String num, int puerto, int pNumero) {
 		try {
 			this.com(num, puerto);
-			this.numero++;
+			this.numero = pNumero;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,8 +74,8 @@ public class ClienteUDP {
 			System.out.println("No ingresó un numero de objetos valido");
 			return;
 		}
-		DatagramPacket sendPacket = new DatagramPacket(BigInteger.valueOf(numObjetos).toByteArray(), sendData.length, IPAddress, puerto);
-		clientSocket.send(sendPacket); 
+		//DatagramPacket sendPacket = new DatagramPacket(BigInteger.valueOf(numObjetos).toByteArray(), sendData.length, IPAddress, puerto);
+		//clientSocket.send(sendPacket); 
 		for (int i = 1; i <= numeroObjetos; i++) 
 		{
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -84,6 +84,7 @@ public class ClienteUDP {
 			ObjetoEnvio objetoActual = new ObjetoEnvio(i, marcaTiempo);
 			objetoActual.setTiempoDeEnvio(d);
 			objetoActual.setNumeroCliente(numero);
+			System.out.println(numero+"EnCU");
 			//PREPARAR bytes a enviar
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			ObjectOutput out = null;
@@ -95,7 +96,7 @@ public class ClienteUDP {
 			  
 			  System.out.println("Tamaño de sendData = " + sendData.length);
 			} finally {
-				sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, puerto);
+				DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, puerto);
 						clientSocket.send(sendPacket); 
 			}
 		}

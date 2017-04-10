@@ -55,40 +55,37 @@ public class Servidor
 				
 				DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 				serverSocket.receive(receivePacket);
-			
+				
 				ObjetoEnvio objRecibido = recibirObjeto(receivePacket.getData());
 				System.out.println("Objeto Recibido:" + objRecibido.toString());
 				
 				InetAddress IPAddress = receivePacket.getAddress();
 				
+				if(objRecibido.getNumeroSecuencia() == 1)
+				{
+					i++;
+				}
 				//System.out.println(c.getNum());
 				//System.out.println(cliente.getNumObjetos());
 				File archivo = new File("./recibidos/cliente"+i);
 				PrintWriter writer = new PrintWriter(new FileWriter(archivo,true));
 				writer.println("-----------Se muestran los objetos recibidos del cliente : "+ i +"-----------");
 				Date fechaActual = new Date();
+				int perdidos = 0;
 				Date f = objRecibido.getTiempoDeEnvio();
 				long resta = fechaActual.getTime()-f.getTime();
 				writer.println("Objeto Recibido:" + objRecibido.toString()+ " tiempo : " + resta + " ms.");
 				writer.println("\n");
+				if(resta == 0)
+				{
+					perdidos++;
+					writer.println("Se pierde objeto, perdidos: " + perdidos);
+				}
 				writer.close();
 				
-				System.out.println(objRecibido.getNumeroCliente());
 				
-				if(objRecibido.getNumeroCliente()>i)
-				{
-					i++;
-					ip = IPAddress;
-				}
-				if(numSec<objRecibido.getNumeroSecuencia())
-				{
-					numSec = objRecibido.getNumeroSecuencia();
-				}
-				else if(numSec>objRecibido.getNumeroSecuencia())
-				{
-					cuantos = numSec - objRecibido.getNumeroSecuencia();
-					writer.println("Se pierden: " + cuantos + " objetos.");
-				}
+				
+				
 			}
 		}catch (Exception e) {
 			// TODO: handle exception

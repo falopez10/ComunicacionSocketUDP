@@ -34,6 +34,8 @@ public class Cliente extends JFrame implements ActionListener
 	private JButton btnAgregarIp;
 	private JButton btnAgregarPuerto;
 	//private JButton btnSolicitar;
+	
+	private int numeCli;
 
 	private ClienteUDP clienteUDP;
 	
@@ -59,7 +61,9 @@ public class Cliente extends JFrame implements ActionListener
 
 	public void iniciarCom() throws Exception
 	{
-		clienteUDP = new ClienteUDP(numObjetos, puerto);
+		numeCli++;
+		System.out.println(numeCli);
+		clienteUDP = new ClienteUDP(numObjetos, puerto,numeCli);
 		
 	}
 	
