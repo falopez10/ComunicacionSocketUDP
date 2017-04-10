@@ -1,6 +1,7 @@
 package Cliente;
 
-import java.io.*; 
+import java.io.*;
+import java.math.BigInteger;
 import java.net.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ public class ClienteUDP {
 	private DatagramSocket clientSocket;
 	private InetAddress IPAddress;
 	private int numero = 0;
+	
 	
 	public int getNum() {
 		return numero;
@@ -42,6 +44,7 @@ public class ClienteUDP {
 		byte[] receiveData = new byte[1024]; 
 		//ENVIO
 		//String input = inFromUser.readLine(); 
+		enviarNroObjetos(numObjetos, sendData,puerto);
 		enviarObjetos(numObjetos, sendData,puerto);
 		
 		//RECEPCION: Parece no ser necesaria
@@ -55,6 +58,11 @@ public class ClienteUDP {
 	} 
 
 	
+	private void enviarNroObjetos(String numObjetos, byte[] sendData, int puerto)
+	{
+		
+	}
+	
 	private void enviarObjetos(String input, byte[] sendData, int puerto) throws IOException
 	{
 		int numeroObjetos = 0;
@@ -66,6 +74,8 @@ public class ClienteUDP {
 			System.out.println("No ingresó un numero de objetos valido");
 			return;
 		}
+		DatagramPacket sendPacket = new DatagramPacket(BigInteger.valueOf(numObjetos).toByteArray(), sendData.length, IPAddress, puerto);
+		clientSocket.send(sendPacket); 
 		for (int i = 1; i <= numeroObjetos; i++) 
 		{
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
