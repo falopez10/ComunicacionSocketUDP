@@ -8,6 +8,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -88,20 +89,9 @@ public class Servidor
 					cuantos = numSec - objRecibido.getNumeroSecuencia();
 					writer.println("Se pierden: " + cuantos + " objetos.");
 				}
-				//ENVIAR: No parece necesario
-				/*
-				InetAddress IPAddress = receivePacket.getAddress();
-				int port = receivePacket.getPort();
-				String capitalizedSentence = sentence.toUpperCase();
-				sendData = capitalizedSentence.getBytes();
-				DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
-				serverSocket.send(sendPacket);
-				System.out.println(sendPacket);
-				*/
-			} 
-		}
-		catch (Exception e) {
-			e.printStackTrace();
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 	

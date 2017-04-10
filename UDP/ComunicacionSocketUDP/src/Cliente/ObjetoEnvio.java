@@ -1,6 +1,7 @@
 package Cliente;
 
 import java.io.Serializable;
+
 import java.util.Date;
 
 public class ObjetoEnvio implements Serializable
@@ -43,5 +44,6 @@ public class ObjetoEnvio implements Serializable
 	public Date getTiempoDeEnvio() {
 		return tiempoDeEnvio;
 	}
-	
+
+
 }

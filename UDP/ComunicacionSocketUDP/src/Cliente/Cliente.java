@@ -34,6 +34,7 @@ public class Cliente extends JFrame implements ActionListener
 	private JButton btnAgregarIp;
 	private JButton btnAgregarPuerto;
 	//private JButton btnSolicitar;
+
 	private ClienteUDP clienteUDP;
 	
 	private String ip;

@@ -5,6 +5,7 @@ import java.net.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date; 
+
 public class ClienteUDP { 
 	
 	private int numObjetos;
@@ -52,6 +53,7 @@ public class ClienteUDP {
 		*/
 		clientSocket.close(); 
 	} 
+
 	
 	private void enviarObjetos(String input, byte[] sendData, int puerto) throws IOException
 	{
@@ -89,9 +91,6 @@ public class ClienteUDP {
 			    // ignore close exception
 			  }
 			}
-			//Fin preparar bytes a enviar
-			DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, puerto);
-			clientSocket.send(sendPacket); 
 		}
 	}
 }
