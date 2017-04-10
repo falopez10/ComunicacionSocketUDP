@@ -85,11 +85,8 @@ public class ClienteUDP {
 			  
 			  System.out.println("Tamaño de sendData = " + sendData.length);
 			} finally {
-			  try {
-			    bos.close();
-			  } catch (IOException ex) {
-			    // ignore close exception
-			  }
+				DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, puerto);
+						clientSocket.send(sendPacket); 
 			}
 		}
 	}
