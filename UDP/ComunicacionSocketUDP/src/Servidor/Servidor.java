@@ -35,6 +35,7 @@ public class Servidor
 	private static ClienteUDP c;
 	
 	public static void main(String args[]) throws IOException {
+		int perdidos = 0;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Ingrese el puerto : ");
 		
@@ -48,8 +49,8 @@ public class Servidor
 			byte[] sendData = new byte[1024];
 			InetAddress ip = null;
 			int i = 0;
-			int numSec = 0;
-			int cuantos = 0;
+			
+			
 			while(true)
 			{
 				
@@ -71,7 +72,7 @@ public class Servidor
 				PrintWriter writer = new PrintWriter(new FileWriter(archivo,true));
 				writer.println("-----------Se muestran los objetos recibidos del cliente : "+ i +"-----------");
 				Date fechaActual = new Date();
-				int perdidos = 0;
+				
 				Date f = objRecibido.getTiempoDeEnvio();
 				long resta = fechaActual.getTime()-f.getTime();
 				writer.println("Objeto Recibido:" + objRecibido.toString()+ " tiempo : " + resta + " ms.");
